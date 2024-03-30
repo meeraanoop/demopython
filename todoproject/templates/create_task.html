@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h3 class="card-title">Create Task</h3>
+                    <form method="POST" class="mt-3">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="task">Task:</label>
+                            <input type="text" name="task" id="task" class="form-control" placeholder="Enter your task">
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority:</label>
+                            <input type="text" name="priority" id="priority" class="form-control" placeholder="Enter your priority">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

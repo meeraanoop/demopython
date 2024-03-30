@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Done</title>
+</head>
+<body>
+    <h1>Task Done</h1>
+    <p>The task "{{ task.name }}" has been marked as done and removed from the list.</p>
+    <a href="{% url 'task_detail_and_create' %}">Go back to task list</a>
+</body>
+</html>
+

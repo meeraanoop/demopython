@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo - Task Detail and Create</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+        }
+
+        .todo-banner {
+            background-color: Gray;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        .todo-banner h1 {
+            margin: 0;
+            font-weight: bold; /* Make Todo text bold */
+        }
+
+        .task-card {
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        /* Done button style */
+        .done-button {
+            width: 25%;
+        }
+        /* Update button style */
+        .update-button {
+            width: 25px; /* Adjust button width if needed */
+        }
+        /* Custom CSS */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Align buttons with space in between */
+}
+    </style>
+</head>
+<body>
+    <!-- Todo Banner -->
+    <div class="todo-banner">
+        <h1 style="color:black;"><strong>Todo</strong></h1>
+    </div>
+
+    <div class="container mt-3">
+        <!-- Submitted Tasks -->
+        <!-- common title -->
+                               <h5 class="card-subtitle mb-2 text" style="color:blue;"><strong>Task Details</strong></h5>
+        <div class="row">
+            <div class="col-md-8">
+                {% for task in tasks %}
+                    <div class="card task-card">
+                        <div class="card-body">
+                            <h6 class="card-title"><strong> Title: </strong>{{ task.name }}</h6>
+                            <h6 class="card-text"><strong> Priority:</strong> {{ task.priority }}</h6>
+                            <h6 class="card-text"><strong>Date Created: </strong>{{ task.date }}</h6> <!-- Display date -->
+                          <div class="button-container">
+
+        <!-- Done button -->
+        <form method="POST" action="{% url 'task_done' task.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Done</button>
+        </form>
+        <!-- Update button -->
+        <form method="GET" action="{% url 'task_update' task.id %}">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Create Task Form -->
+            <div class="col-md-4">
+
+                <div class="card">
+
+                    <div class="card-body">
+ <h5 class="card-subtitle mb-2 text" style="color:blue;"><strong>Create Task</strong></h5>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for confirmation message -->
+
+</body>
+</html>
